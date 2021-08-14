@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(N) {
+      const binary = N.toString(2);
+      const len = binary.length;
+      let index = 0;
+      let max = 0;
+      for (let i = 0; i < len; i++) {
+        if (binary[i] === "0") continue;
+        if (i - index > max && index >= 0) {
+          max = i - index;
+        }
+        index = i;
+      }
+      return max ? max - 1 : 0;
+    }
+
+    let a = 32;
+    console.log(solution(a));
+  </script>
+</html>
