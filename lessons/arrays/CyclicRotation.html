@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(A, K) {
+      const len = A.length;
+      const firstSlice = len - (K % len);
+      return [...A.slice(firstSlice), ...A.slice(0, firstSlice)];
+    }
+
+    console.log(solution([3, 8, 9, 7, 6], 5));
+  </script>
+</html>

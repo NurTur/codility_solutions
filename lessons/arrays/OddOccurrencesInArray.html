@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(A, K) {
+      let len = A.length;
+      if (len <= 1) {
+        return A[0] || 0;
+      }
+      A.sort((a, b) => a - b);
+      let i = 0;
+      while (i < len) {
+        if (A[i] !== A[i + 1]) {
+          return A[i];
+        }
+        i += 2;
+      }
+      return 0;
+    }
+
+    console.log(solution([2, 2, 3, 3, 4]));
+  </script>
+</html>
