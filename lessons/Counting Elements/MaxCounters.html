@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(N, A) {
+      const len = A.length;
+      let max = 0;
+      let lastUpdate = 0;
+
+      let arr = [];
+      for (let i = 0; i < N; i++) {
+        arr.push(0);
+      }
+
+      for (let i = 0; i < len; i++) {
+        if (A[i] <= N) {
+          let num = arr[A[i] - 1] > lastUpdate ? arr[A[i] - 1] : lastUpdate;
+          arr[A[i] - 1] = num + 1;
+          if (arr[A[i] - 1] > max) {
+            max = arr[A[i] - 1];
+          }
+        } else {
+          lastUpdate = max;
+        }
+      }
+
+      for (let j = 0; j < N; j++) {
+        if (arr[j] < lastUpdate) arr[j] = lastUpdate;
+      }
+
+      return arr;
+    }
+
+    console.log(solution(5, [3, 4, 4, 6, 1, 4, 4]));
+  </script>
+</html>
