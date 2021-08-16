@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(A, B, K) {
+      let smallMod = 0;
+      let bigMod = 0;
+
+      if (A > K || A === 0) {
+        smallMod = A + (A % K);
+      } else {
+        smallMod = K;
+      }
+
+      if (B > K || B === 0) {
+        bigMod = B - (B % K);
+      } else {
+        bigMod = K;
+      }
+
+      let condition =
+        bigMod >= smallMod && smallMod >= A && bigMod <= B ? 1 : 0;
+
+      let result = +((bigMod - smallMod) / K).toFixed(0) + condition;
+
+      return result > 0 ? result : 0;
+    }
+
+    console.log(solution(101, 123456789, 10000));
+  </script>
+</html>

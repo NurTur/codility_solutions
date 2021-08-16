@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(A) {
+      const len = A.length;
+      let minAvg = Infinity;
+      let index = 0;
+      let avg = 0;
+     
+      for (let i = 0; i < len - 1; i++) {
+        avg = (A[i] + A[i + 1]) / 2;
+        if (i + 2 < len && A[i + 2] < avg) {
+          avg = (A[i] + A[i + 1] + A[i + 2]) / 3;
+        }
+
+        if (avg < minAvg) {
+          minAvg = avg;
+          index = i;
+        }
+      }
+      return index;
+    }
+
+    console.log(solution([4, 2, 2, 5, 1, 5, 8]));
+  </script>
+</html>
