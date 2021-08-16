@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(A) {
+      let len = A.length;
+      A.sort((a, b) => b - a);
+      let max1 = A[0] * A[1] * A[2];
+      let max2 = A[0] * A[len - 1] * A[len - 2];
+
+      return max1 > max2 ? max1 : max2;
+    }
+
+    console.log(solution([-3, 1, 2, -2, 5, 6]));
+  </script>
+</html>
