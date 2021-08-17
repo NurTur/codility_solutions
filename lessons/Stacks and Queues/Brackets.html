@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(S) {
+      let map = new Map();
+      map.set("}", "{");
+      map.set("]", "[");
+      map.set(")", "(");
+
+      let arr = [];
+
+      for (let i = 0; i < S.length; i++) {
+        if (S[i] === "{" || S[i] === "[" || S[i] === "(") {
+          arr.push(S[i]);
+          continue;
+        }
+        let end = arr.pop();
+        if (map.get(S[i]) && end !== map.get(S[i])) {
+          return 0;
+        }
+      }
+      return arr.length === 0 ? 1 : 0;
+    }
+
+    console.log(solution("{{{{"));
+  </script>
+</html>

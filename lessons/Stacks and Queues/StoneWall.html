@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(H) {
+      let arr = [];
+      let counter = 0;
+
+      H.forEach((height) => {
+        let len = arr.length;
+        while (len > 0 && arr[len - 1] > height) {
+          arr.pop();
+          len = arr.length;
+        }
+        if (len == 0 || arr[len - 1] < height) {
+          counter++;
+          arr.push(height);
+        }
+      });
+
+      return counter;
+    }
+    console.log(solution([8, 8, 5, 7, 9, 8, 7, 4, 8]));
+  </script>
+</html>
