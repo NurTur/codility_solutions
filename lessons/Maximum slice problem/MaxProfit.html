@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(A) {
+      let arr = [0];
+     
+      for (let i = 0; i < A.length - 1; i++) {
+        arr[i] = A[i + 1] - A[i];
+      }
+      arr=[0,...arr]; 
+   
+      let max = Math.max(...arr);
+
+      let len = arr.length;
+
+      let left = [0];
+      let right = [];
+      right[len - 1] = arr[len - 1];
+      for (let i = 1; i < len; i++) {
+        left[i] = Math.max(0, left[i - 1] + arr[i]);
+      }
+
+      for (let i = len - 2; i > 0; i--) {
+        right[i] = Math.max(0, right[i + 1] + arr[i]);
+      }
+
+         
+      for (let i = 1; i < len; i++) {
+        max = Math.max(max, left[i - 1] + right[i]);
+      }
+      return max > 0 ? max : 0;
+    }
+
+    console.log(solution([1,  2,  5]));
+  </script>
+</html>

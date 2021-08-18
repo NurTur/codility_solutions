@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(A) {
+      let arr = [A[0]];
+      let j = 0;
+      let p = 0;
+
+      for (let i = 1; i < A.length; i++) {
+        if ((arr[j] >= 0 && A[i] < 0) || (arr[j] < 0 && A[i] >= 0)) {
+          ++j;
+        }
+        arr[j] = (arr[j] ? arr[j] : 0) + A[i];
+      }
+
+      let len = arr.length;
+      let max = arr[0];
+      let sum = 0;
+
+      for (let q = 0; q < len; q++) {
+        if (q === p) {
+          sum = arr[q];
+        } else {
+          sum += arr[q];
+        }
+
+        if (sum <= 0) {
+          p = q + 1;
+          continue;
+        }
+
+        if (sum > max) {
+          max = sum;
+        }
+      }
+      let maxOfA = Math.max(...A);
+      return max > maxOfA ? max : maxOfA;
+    }
+
+    console.log(solution([-2, 1]));
+  </script>
+</html>
