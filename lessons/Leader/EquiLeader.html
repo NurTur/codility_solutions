@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function handleArray(arr, index) {
+      if (arr[index]) {
+        arr[index] += 1;
+      } else {
+        arr[index] = 1;
+      }
+      return arr;
+    }
+
+    function solution(A) {
+      let len = A.length;
+      let right = [];
+      let left = [];
+      let counter = 0;
+
+      for (let i = 0; i < len; i++) {
+        right = handleArray(right, A[i]);
+      }
+
+      let leader = A[0];
+      for (let j = 0; j < len; j++) {
+        left = handleArray(left, A[j]);
+
+        if (left[A[j]] > (j + 1) / 2) {
+          leader = A[j];
+        }
+        right[A[j]] -= 1;
+
+        if (left[leader] > (j + 1) / 2 && right[leader] > (len - j - 1) / 2) {
+          counter += 1;
+        }
+      }
+      return counter;
+    }
+
+    console.log(solution([4, 4, 2, 5, 3, 4, 4, 4]));
+  </script>
+</html>
