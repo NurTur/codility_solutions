@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(N) {
+      let result = 0;
+      let sqrtN = Math.round(Math.sqrt(N));
+      for (let i = 1; i <= sqrtN; i++) {
+        if (N % i === 0) {
+          result += 2;
+          console.log(i, "   ", result, "  ", sqrtN);
+        }
+      }
+
+      if (sqrtN * sqrtN === N) {
+        result--;
+      }
+      return result;
+    }
+
+    console.log(solution(16));
+  </script>
+</html>

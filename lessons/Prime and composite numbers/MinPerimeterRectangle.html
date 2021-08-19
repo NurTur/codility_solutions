@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head> </head>
+  <body></body>
+
+  <script>
+    function solution(N) {
+      let min = Infinity;
+      let sqrtN = Math.round(Math.sqrt(N));
+      for (let i = 1; i <= sqrtN; i++) {
+        if (N % i === 0) {
+          let division = N / i;
+          if (min > division + i) {
+            min = division + i;
+          }
+        }
+      }
+
+      return min;
+    }
+
+    console.log(solution(1));
+  </script>
+</html>
