@@ -4,12 +4,93 @@
   <body></body>
 
   <script>
-    function solution(A, K) {
+    var timer = function (name) {
+      var start = new Date();
+      return {
+        stop: function () {
+          var end = new Date();
+          var time = end.getTime() - start.getTime();
+          console.log("Timer:", name, "finished in", time, "ms");
+        },
+      };
+    };
+
+    function solution(A, K) { //11400
       const len = A.length;
       const firstSlice = len - (K % len);
       return [...A.slice(firstSlice), ...A.slice(0, firstSlice)];
     }
 
-    console.log(solution([3, 8, 9, 7, 6], 5));
+    function solution2(A, K) { // 10961
+      let new_array = []; 
+      let len = A.length;
+
+      for (let i = 0; i < len; i++) {
+        new_array[(i + K) % len] = A[i]; 
+      }
+
+      return new_array; 
+    }
+
+    function solution3(A, K) { //10715
+      let size = A.length;
+	    let ret = [];
+
+	    if (K < 0 || K > 100 || size == 0) {
+	        return ret;
+	    }
+
+	    if (size == 1) {
+	        return A;
+	    }
+
+	    for (let i = 0; i < size; i++) {
+	        ret[(i + K) % size] = A[i];
+	        
+	    }
+
+	    return ret;
+    }
+
+    function solution4(A, K) { //12661
+      let N = A.length;
+        if (N==0) return A;
+        if (K>=N) K %= N;
+        if (K==0) return A;
+        let rotA = [];
+        for (let i=0; i<N; i++)
+            rotA[i] = (i<K) ? A[N+i-K] : A[i-K];
+        return rotA;
+    }
+
+
+    var t = timer("Some label");
+    for (let j = 0; j < 10000000; j++) {
+
+      solution(
+        [
+          3, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+          3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6, 8, 9, 7, 6, 3, 8, 9, 7, 6,
+        ],
+        99
+      )
+    
+     }
+
+    t.stop(); // prints the time elapsed to the js console
   </script>
 </html>
