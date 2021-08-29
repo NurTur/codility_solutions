@@ -4,7 +4,40 @@
   <body></body>
 
   <script>
-    function solution(A) {
+    var timer = function (name) {
+      var start = new Date();
+      return {
+        stop: function () {
+          var end = new Date();
+          var time = end.getTime() - start.getTime();
+          console.log("Timer:", name, "finished in", time, "ms");
+        },
+      };
+    };
+
+
+
+    function solution2(A) { //870
+      let sum = 0;
+
+      for (let i = 0; i < A.length; i++) {
+        sum += A[i];
+      }
+
+      let min = Math.abs(A[0] - (sum - A[0]));
+      let leftSum = A[0];
+
+      for (let j = 1; j < A.length - 1; j++) {
+        leftSum += A[j];
+        if (min > Math.abs(leftSum - (sum - leftSum))) {
+          min = Math.abs(leftSum - (sum - leftSum));
+        }
+      }
+
+      return min;
+    }
+
+    function solution(A) { //870
       let len = A.length;
 
       if (len < 2) return A[0] || 0;
@@ -29,8 +62,12 @@
       return min;
     }
 
-    console.log(solution([1, 4, 3, 2, 10]));
-    // [5, 6, 2, 4, 1] 4
-    // [10, 2, 3, 4, 1] 0
+    var t = timer("Some label");
+    for (let i=0; i<100000000; i++) {
+      solution([3, 1, 2, 4, 3]);
+    } 
+   
+
+    t.stop(); // prints the time elapsed to the js console
   </script>
 </html>
