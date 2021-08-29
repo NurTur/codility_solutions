@@ -4,7 +4,7 @@
   <body></body>
 
   <script>
-    function solution(A, K) {
+    function solution(A) {//8000
       let len = A.length;
       if (len <= 1) {
         return A[0] || 0;
@@ -19,6 +19,20 @@
       }
       return 0;
     }
+
+    function solution2(A) { //8200
+      A.sort((a,b)=>a-b);
+      let j=0; 
+      while (j<A.length) {
+        if (A[j]===A[j+1]) {
+          j+=2;
+          continue;
+        }
+        return A[j];
+      }
+     
+    }
+
 
     console.log(solution([2, 2, 3, 3, 4]));
   </script>
