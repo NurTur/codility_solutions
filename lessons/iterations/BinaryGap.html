@@ -109,9 +109,30 @@
       return max;
     }
 
+    function solution5(N) { //315
+      let counter = 0;
+      let startCount = false;
+      let max = 0;
+
+      while (N) {
+        if (N & 1) {
+          startCount = true;
+          max = Math.max(max, counter);
+          counter = 0;
+          N = N >> 1;
+          continue;
+        }
+        if (startCount) {
+          counter++;
+        }
+        N = N >> 1;
+      }
+      return max;
+    }
+
     var t = timer("Some label");
     for (let j = 0; j < 10000000; j++) {
-      solution4(1376796946);
+      solution5(1376796946);
     }
 
     t.stop(); // prints the time elapsed to the js console

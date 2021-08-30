@@ -15,9 +15,8 @@
       };
     };
 
-
-
-    function solution2(A) { //870
+    function solution2(A) {
+      //870
       let sum = 0;
 
       for (let i = 0; i < A.length; i++) {
@@ -37,7 +36,8 @@
       return min;
     }
 
-    function solution(A) { //870
+    function solution(A) {
+      //870
       let len = A.length;
 
       if (len < 2) return A[0] || 0;
@@ -62,11 +62,29 @@
       return min;
     }
 
+    function solution3(A) {
+      let sum = 0;
+      let len = A.length;
+      for (let i = 0; i < len; i++) {
+        sum += A[i];
+      }
+
+      let min = Math.abs(A[0] - (sum - A[0]));
+      let iterationSum = A[0];
+      let j = 1;
+      while (j < len - 1) {
+        iterationSum += A[j];
+
+        min = Math.min(min, Math.abs(iterationSum - (sum - iterationSum)));
+        j++;
+      }
+      return min;
+    }
+
     var t = timer("Some label");
-    for (let i=0; i<100000000; i++) {
+    for (let i = 0; i < 100000000; i++) {
       solution([3, 1, 2, 4, 3]);
-    } 
-   
+    }
 
     t.stop(); // prints the time elapsed to the js console
   </script>
