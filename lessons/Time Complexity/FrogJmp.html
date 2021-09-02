@@ -7,8 +7,14 @@
     function solution(X, Y, D) {
       let division = Math.floor((Y - X) / D);
       let remainder = (Y - X) % D > 0 ? 1 : 0;
-      console.log(division,'  ',remainder)
-      return division + remainder;    
+      return division + remainder;
+    }
+
+    function solution2(X, Y, D) {
+      let path = Math.abs(Y - X);
+      let stepCount = Math.floor(path / D);
+      let additional = path % D > 0 ? 1 : 0;
+      return stepCount + additional;
     }
 
     console.log(solution(10, 85, 30));
