@@ -4,7 +4,7 @@
   <body></body>
 
   <script>
-     var timer = function (name) {
+    var timer = function (name) {
       var start = new Date();
       return {
         stop: function () {
@@ -15,7 +15,6 @@
       };
     };
 
-    
     function solution(A) {
       let len = A.length;
       if (len === 0) return 1;
@@ -55,15 +54,23 @@
       return testnum;
     }
 
+    function solution3(A) {
+      A.sort((a, b) => a - b);
+      let temp = 0;
+      for (let i = 0; i < A.length; i++) {
+        if (A[i] - temp > 1) {
+          return temp + 1;
+        }
+        temp = A[i];
+      }
+      return temp + 1;
+    }
 
     var t = timer("Some label");
     for (let j = 0; j < 10000000; j++) {
-
-      solution([1, 3, 6, 4, 1, 2])
-    
-     }
+      solution([1, 3, 6, 4, 1, 2]);
+    }
 
     t.stop(); // prints the time elapsed to the js console
-
   </script>
 </html>
