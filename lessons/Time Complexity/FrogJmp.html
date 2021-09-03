@@ -4,6 +4,18 @@
   <body></body>
 
   <script>
+     var timer = function (name) {
+      var start = new Date();
+      return {
+        stop: function () {
+          var end = new Date();
+          var time = end.getTime() - start.getTime();
+          console.log("Timer:", name, "finished in", time, "ms");
+        },
+      };
+    };
+
+    
     function solution(X, Y, D) {
       let division = Math.floor((Y - X) / D);
       let remainder = (Y - X) % D > 0 ? 1 : 0;
