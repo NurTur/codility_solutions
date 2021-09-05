@@ -4,15 +4,26 @@
   <body></body>
 
   <script>
-    function solution(A) {
+    var timer = function (name) {
+      var start = new Date();
+      return {
+        stop: function () {
+          var end = new Date();
+          var time = end.getTime() - start.getTime();
+          console.log("Timer:", name, "finished in", time, "ms");
+        },
+      };
+    };
+
+    function solution(A) { //2715
       let len = A.length;
 
       A.sort((a, b) => a - b);
 
       if (len === 0 || A[0] !== 1) return 0;
 
-      for (let i = 0; i < len-1; i++) {
-        if (A[i + 1] - A[i] !==1 )  {
+      for (let i = 0; i < len - 1; i++) {
+        if (A[i + 1] - A[i] !== 1) {
           return 0;
         }
       }
@@ -20,6 +31,25 @@
       return 1;
     }
 
-    console.log(solution([4,1,2]));
+    function solution2(A) { //2659
+      A.sort((a, b) => a - b);
+      let test = 1;
+      let i = 0;
+      while (i < A.length) {
+        if (A[i] !== i + 1) {
+          test = 0;
+          break;
+        }
+        i++;
+      }
+      return test;
+    }
+
+    var t = timer("Some label");
+    for (let j = 0; j < 10000000; j++) {
+      solution([4, 1, 2, 3, 6, 5]);
+    }
+
+    t.stop(); // prints the time elapsed to the js console
   </script>
 </html>
