@@ -4,25 +4,57 @@
   <body></body>
 
   <script>
-     function solution(A) {
-    A = [0, ...A];
-    let len = A.length;
-  
-    if ((len === 1 && A[0] !== 1)) return 1;
+     var timer = function (name) {
+      var start = new Date();
+      return {
+        stop: function () {
+          var end = new Date();
+          var time = end.getTime() - start.getTime();
+          console.log("Timer:", name, "finished in", time, "ms");
+        },
+      };
+    };
 
-    A.sort((a, b) => a - b);
-    let i = 1;
+    function solution(A) { //1455
+      A = [0, ...A];
+      let len = A.length;
 
-    while (i < len) {
+      if (len === 1 && A[0] !== 1) return 1;
+
+      A.sort((a, b) => a - b);
+      let i = 1;
+
+      while (i < len) {
         if (A[i] - A[i - 1] > 1 && A[i - 1] >= 0) {
-            return A[i - 1] + 1;
+          return A[i - 1] + 1;
         }
         i++;
+      }
+      return A[len - 1] + 1;
     }
-    return A[len - 1]+1;
 
-}
+    function solution2(A) { //1495
+      A = [0, ...A, Infinity];
+      A.sort((a, b) => a - b);
+      let len = A.length;
+      let j = 0;
 
-    console.log(solution([3, 4, 4, 6, 1, 4, 4]));
+      while (j < len - 1) {
+        if (A[j + 1] - A[j] > 1 && A[j] >= 0) {
+          return A[j] + 1;
+        }
+        j++;
+      }
+      return 1;
+    }
+
+    var t = timer("Some label");
+    for (let j = 0; j < 1000000000; j++) {
+      solution2([3, 4, 4, 6, 1, 4, 4])
+    }
+
+    t.stop(); // prints the time elapsed to the js console
+
+  
   </script>
 </html>

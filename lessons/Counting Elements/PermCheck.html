@@ -45,9 +45,23 @@
       return test;
     }
 
+
+    function solution3(A) { //1488
+    let set = new Set();
+    let len = A.length;
+    for (let i = 0; i < len; i++) {
+        if (A[i] <= len) {
+            set.add(A[i]);
+        }
+    }
+
+    return set.size === len ? 1 : 0;
+
+}
+
     var t = timer("Some label");
     for (let j = 0; j < 10000000; j++) {
-      solution([4, 1, 2, 3, 6, 5]);
+      solution3([4, 1, 2, 3, 6, 5]);
     }
 
     t.stop(); // prints the time elapsed to the js console
