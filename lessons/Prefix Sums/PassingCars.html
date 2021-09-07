@@ -4,7 +4,18 @@
   <body></body>
 
   <script>
-    function solution(A) {
+    var timer = function (name) {
+      var start = new Date();
+      return {
+        stop: function () {
+          var end = new Date();
+          var time = end.getTime() - start.getTime();
+          console.log("Timer:", name, "finished in", time, "ms");
+        },
+      };
+    };
+
+    function solution(A) { //3494
       let sum = A.reduce(function (sum, current) {
         return sum + current;
       }, 0);
@@ -23,6 +34,28 @@
       return counter;
     }
 
-    console.log(solution([0, 1, 0, 1, 1]));
+    function solution2(A) { //3592
+      let sum = A.reduce((acc, cur) => acc + cur, 0);
+      let i = 0;
+      let result = 0;
+      let len = A.length;
+      while (i < len && sum > 0) {
+        if (A[i] === 0) {
+          result += sum;
+        } else {
+          sum -= 1;
+        }
+        i++;
+      }
+      return result > 1000000000 ? -1 : result;
+    }
+
+    var t = timer("Some label");
+    for (let j = 0; j < 100000000; j++) {
+      solution2([0, 1, 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 1, 1]);
+    }
+
+    t.stop(); // prints the time elapsed to the js console
   </script>
 </html>
+

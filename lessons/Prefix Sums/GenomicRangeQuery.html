@@ -4,7 +4,18 @@
   <body></body>
 
   <script>
-    function solution(S, P, Q) {
+    var timer = function (name) {
+      var start = new Date();
+      return {
+        stop: function () {
+          var end = new Date();
+          var time = end.getTime() - start.getTime();
+          console.log("Timer:", name, "finished in", time, "ms");
+        },
+      };
+    };
+
+    function solution(S, P, Q) { //8661
       let len = P.length;
 
       let arr = [];
@@ -12,13 +23,13 @@
       for (let i = 0; i < len; i++) {
         sliceS = S.slice(P[i], Q[i] + 1);
 
-        if (sliceS.indexOf("A")>=0) {
+        if (sliceS.indexOf("A") >= 0) {
           arr.push(1);
           continue;
-        } else if (sliceS.indexOf("C")>=0) {
+        } else if (sliceS.indexOf("C") >= 0) {
           arr.push(2);
           continue;
-        } else if (sliceS.indexOf("G")>=0) {
+        } else if (sliceS.indexOf("G") >= 0) {
           arr.push(3);
           continue;
         } else {
@@ -29,6 +40,29 @@
       return arr;
     }
 
-    console.log(solution("CAGCCTA", [2, 5, 0], [4, 5, 6]));
+    function solution2(S, P, Q) { //21922
+      let arr = [];
+      let map = new Map();
+      map.set("A", 1).set("C", 2).set("G", 3).set("T", 4);
+
+      for (let i = 0; i < P.length; i++) {
+        let sliceOfStr = S.slice(P[i], Q[i] + 1);
+        for (let [key, value] of map.entries()) {
+          if (sliceOfStr.indexOf(key) >= 0) {
+            arr.push(value);
+            break;
+          }
+        }
+      }
+      return arr;
+    }
+
+    var t = timer("Some label");
+    for (let j = 0; j < 100000000; j++) {
+      solution2("CAGCCTA", [2, 5, 0], [4, 5, 6]);
+    }
+
+    t.stop(); // prints the time elapsed to the js console
   </script>
 </html>
+
