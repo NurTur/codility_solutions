@@ -91,6 +91,40 @@ var timer = function (name) {
 
 }
 
+
+function solution3(N, A) {
+
+    let len = A.length;
+    let arr = new Array(N);
+    arr.fill(0, 0, N);
+    let max = 0;
+    let last = 0;
+
+    for (let i = 0; i < len; i++) {
+        if (A[i] <= N) {
+            let addon = arr[A[i] - 1] > last ? arr[A[i] - 1] : last;
+            arr[A[i] - 1] = addon + 1;
+            max = Math.max(max, arr[A[i] - 1]);
+
+            continue;
+        }
+        else if (A[i] === N + 1) {
+           last=max;
+
+        }
+
+    }
+
+    for (let j = 0; j < N; j++) {
+        arr[j] = arr[j] > last ? arr[j] : last;
+    }
+
+
+
+
+    return arr
+}
+
 var t = timer("Some label");
     for (let j = 0; j < 100000000; j++) {
       console.log(solution(5, [3, 4, 4, 6, 1, 4, 4, 6, 2]));

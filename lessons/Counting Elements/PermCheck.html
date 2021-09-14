@@ -59,9 +59,26 @@
 
 }
 
+
+function solution4(A) { // 1843
+    let len = A.length;
+    let set= new Set();
+
+    let i=0;
+    while (i<len) {
+        if (!set.has(A[i])) {
+            set.add(A[i]);
+            i++;
+            continue;
+        }
+        return 0;
+    }
+    return set.size === Math.max(...A) ? 1 :0;
+
+}
     var t = timer("Some label");
     for (let j = 0; j < 10000000; j++) {
-      solution3([4, 1, 2, 3, 6, 5]);
+      solution4([4, 1, 2, 3, 6, 5]);
     }
 
     t.stop(); // prints the time elapsed to the js console
